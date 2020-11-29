@@ -4,7 +4,7 @@ const {
 
 const add = async (name, description, list_id) => {
     await query('INSERT INTO cards (name, description, list_id) ' +
-    'VALUES ($1)', [name, description, list_id]);
+    'VALUES ($1, $2, $3)', [name, description, list_id]);
 };
 
 const getAllByList = async (list_id) => {

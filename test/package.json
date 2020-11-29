@@ -1,5 +1,5 @@
 {
-  "name": "taskboard-ui",
+  "name": "test",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "KennyTheBard <octav_teculescu@yahoo.com>",
@@ -10,10 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.21.0",
-    "bootstrap-vue": "^2.19.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.4.9"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
