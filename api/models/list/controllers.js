@@ -42,7 +42,7 @@ router.get('/', async (req, res, next) => {
 
     try {
         validateFields({
-            project_id: {
+            boardId: {
                 value: boardId,
                 type: 'int'
             },

@@ -10,7 +10,9 @@ const router = express.Router();
 
 router.post('/', async (req, res, next) => {
     const {
-        listId,
+        listId
+    } = req.state;
+    const {
         description,
         name
     } = req.body;
@@ -45,13 +47,13 @@ router.get('/', async (req, res, next) => {
 
     try {
         validateFields({
-            project_id: {
+            listId: {
                 value: listId,
                 type: 'int'
             },
         });
 
-        const tasks = await CardService.getAllByList(parseInt(projectId));
+        const tasks = await CardService.getAllByList(parseInt(listId));
         res.json(tasks);
     } catch (err) {
         next(err);
@@ -90,6 +92,33 @@ router.put('/:id', async (req, res, next) => {
     }
 });
 
+router.put('/move/:id', async (req, res, next) => {
+    const {
+        id
+    } = req.params;
+    const {
+        listId
+    } = req.body;
+
+    try {
+        validateFields({
+            id: {
+                value: id,
+                type: 'int'
+            },
+            listId: {
+                value: listId,
+                type: 'ascii'
+            },
+        });
+
+        await CardService.updateListId(parseInt(id), parseInt(listId));
+        res.status(204).end();
+    } catch (err) {
+        next(err);
+    }
+});
+
 router.delete('/:id', async (req, res, next) => {
     const {
         id
@@ -103,7 +132,7 @@ router.delete('/:id', async (req, res, next) => {
             }
         });
 
-        await CardService.deleteById(parseInt(id), parseInt(projectId));
+        await CardService.deleteById(parseInt(id));
         res.status(204).end();
     } catch (err) {
         next(err);

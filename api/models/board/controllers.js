@@ -39,6 +39,26 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/:boardId', async (req, res, next) => {
+    const {
+        boardId
+    } = req.params;
+
+    try {
+        validateFields({
+            boardId: {
+                value: boardId,
+                type: 'int'
+            }
+        });
+
+        const boards = await BoardService.getById(boardId);
+        res.json(boards);
+    } catch (err) {
+        next(err);
+    }
+});
+
 router.put('/:boardId', async (req, res, next) => {
     const {
         boardId
@@ -66,7 +86,7 @@ router.put('/:boardId', async (req, res, next) => {
     }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:boardId', async (req, res, next) => {
     const {
         boardId
     } = req.params;

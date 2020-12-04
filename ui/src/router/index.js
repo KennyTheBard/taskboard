@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Home from '@/components/Home';
 import Board from '@/components/Board';
-import Card from '@/components/Card';
+import NewCard from '@/components/NewCard';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter)
@@ -9,13 +9,27 @@ Vue.use(VueRouter)
 export default new VueRouter({
   routes: [{
     path: '/',
+    name: 'Home',
     component: Home
   }, {
-    path: '/board/:id',
-    component: Board
+    path: '/board/:boardId/list/:listId/new-card',
+    name: 'NewCard',
+    component: NewCard,
+    props(route) {
+      return {
+        boardId: route.params.boardId,
+        listId: route.params.listId
+      }
+    }
   }, {
-    path: '/card/:id',
-    component: Card
+    path: '/board/:id',
+    name: 'Board',
+    component: Board,
+    props(route) {
+      return {
+        boardId: route.params.id,
+      }
+    }
   }],
   mode: 'history'
 })
