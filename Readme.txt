@@ -1,4 +1,4 @@
-Teculescu Octavian-Alexandru (SSA)
+Teculescu Octavian-Alexandru (SSA1-B)
 ==================================================================
 
             Taskboard (Trello clone)
