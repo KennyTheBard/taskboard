@@ -3,7 +3,7 @@
         <h1>Boards</h1>
         <div class="grid-container">
           <div class="item" v-for="board in boards" :key="board.id">
-            <h3>{{ Sboard.name }}</h3>
+            <h3>{{ board.name }}</h3>
             <router-link :to="'/board/' + board.id">
               Go to board
             </router-link>
